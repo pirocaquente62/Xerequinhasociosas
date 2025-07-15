@@ -78,33 +78,21 @@
     const grito = document.getElementById('grito');
 
     let frases = ["Analisando dispositivo...", "Injetando vírus.exe...", "Extraindo dados sensíveis...", "Enviando pro CACETINHO...", "Espere um momento..."];
-    let i = 0;
-
-    botao.addEventListener('mouseover', () => {
-      const x = Math.random() * (window.innerWidth - botao.offsetWidth);
-      const y = Math.random() * (window.innerHeight - botao.offsetHeight);
-      botao.style.left = `${x}px`;
-      botao.style.top = `${y}px`;
-    });
+    let cliqueCount = 0;
 
     botao.addEventListener('click', () => {
+      cliqueCount++;
       gemidao.play();
-      botao.style.display = 'none';
-      escreverFrases();
-    });
+      texto.innerHTML += frases[cliqueCount - 1] + "\n";
 
-    function escreverFrases() {
-      if (i < frases.length) {
-        texto.innerHTML += frases[i] + "\n";
-        i++;
-        setTimeout(escreverFrases, 1500);
-      } else {
+      if (cliqueCount === 5) {
+        botao.style.display = 'none';
         setTimeout(() => {
           susto.style.display = 'flex';
           grito.play();
         }, 1000);
       }
-    }
+    });
   </script>
 </body>
 </html>
