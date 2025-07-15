@@ -38,7 +38,7 @@
       font-size: 1.2em;
       margin-top: 30px;
       color: #ff4444;
-      white-space: pre;
+      white-space: pre-wrap;
     }
     #susto {
       position: fixed;
@@ -77,22 +77,39 @@
     const susto = document.getElementById('susto');
     const grito = document.getElementById('grito');
 
-    let frases = ["Analisando dispositivo...", "Injetando vírus.exe...", "Extraindo dados sensíveis...", "Enviando pro CACETINHO...", "Espere um momento..."];
-    let cliqueCount = 0;
+    const frases = [
+      "Tirando fotos sensuais da sua galeria...",
+      "Enviando histórico para sua mãe...",
+      "Expondo prints do zap para o grupo da família...",
+      "Analisando vídeos salvos na pasta oculta...",
+      "Enviando localização para o FBI...",
+      "Chamando o CACETINHO SUPREMO..."
+    ];
+
+    let index = 0;
+    let clicou = false;
 
     botao.addEventListener('click', () => {
-      cliqueCount++;
-      gemidao.play();
-      texto.innerHTML += frases[cliqueCount - 1] + "\n";
-
-      if (cliqueCount === 5) {
+      if (!clicou) {
+        clicou = true;
         botao.style.display = 'none';
+        gemidao.play();
+        escreverFrases();
+      }
+    });
+
+    function escreverFrases() {
+      if (index < frases.length) {
+        texto.innerHTML += frases[index] + "\n";
+        index++;
+        setTimeout(escreverFrases, 1300);
+      } else {
         setTimeout(() => {
           susto.style.display = 'flex';
           grito.play();
         }, 1000);
       }
-    });
+    }
   </script>
 </body>
 </html>
