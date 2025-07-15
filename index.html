@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>VOCÊ FOI PEGADO PELO CACETINHO</title>
+  <style>
+    body {
+      background: black;
+      color: #ff0000;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+    h1 {
+      font-size: 3em;
+      margin-top: 50px;
+      animation: piscar 1s infinite;
+      text-align: center;
+    }
+    @keyframes piscar {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    #botao {
+      position: absolute;
+      padding: 15px 30px;
+      font-size: 1.5em;
+      background: red;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #texto {
+      text-align: center;
+      font-size: 1.2em;
+      margin-top: 30px;
+      color: #ff4444;
+      white-space: pre;
+    }
+    #susto {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #susto img {
+      width: 100%;
+      max-width: 800px;
+    }
+  </style>
+</head>
+<body>
 
+  <h1>VOCÊ FOI HACKEADO PELO CACETINHO</h1>
+  <button id="botao">Quero ver AGORA!</button>
+  <div id="texto"></div>
+
+  <div id="susto">
+    <img src="https://i.imgur.com/fnGTgmL.png" alt="susto demoníaco">
+    <audio id="grito" src="https://www.myinstants.com/media/sounds/screamer.mp3"></audio>
+  </div>
+
+  <audio id="gemidao" src="https://www.myinstants.com/media/sounds/gemidao-do-zap.mp3"></audio>
+
+  <script>
+    const botao = document.getElementById('botao');
+    const texto = document.getElementById('texto');
+    const gemidao = document.getElementById('gemidao');
+    const susto = document.getElementById('susto');
+    const grito = document.getElementById('grito');
+
+    let frases = ["Analisando dispositivo...", "Injetando vírus.exe...", "Extraindo dados sensíveis...", "Enviando pro CACETINHO...", "Espere um momento..."];
+    let i = 0;
+
+    botao.addEventListener('mouseover', () => {
+      const x = Math.random() * (window.innerWidth - botao.offsetWidth);
+      const y = Math.random() * (window.innerHeight - botao.offsetHeight);
+      botao.style.left = `${x}px`;
+      botao.style.top = `${y}px`;
+    });
+
+    botao.addEventListener('click', () => {
+      gemidao.play();
+      botao.style.display = 'none';
+      escreverFrases();
+    });
+
+    function escreverFrases() {
+      if (i < frases.length) {
+        texto.innerHTML += frases[i] + "\n";
+        i++;
+        setTimeout(escreverFrases, 1500);
+      } else {
+        setTimeout(() => {
+          susto.style.display = 'flex';
+          grito.play();
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+</html>
