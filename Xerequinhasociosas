@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>Você foi hackeado pelo CACETINHO</title>
+<style>
+  body {
+    background: black;
+    color: red;
+    text-align: center;
+    font-family: 'Courier New', monospace;
+  }
+  h1 {
+    font-size: 3em;
+    margin-top: 50px;
+    animation: piscar 1s infinite;
+  }
+  @keyframes piscar {
+    0%, 50%, 100% {opacity: 1;}
+    25%, 75% {opacity: 0;}
+  }
+  #botao {
+    margin-top: 40px;
+    padding: 20px 40px;
+    font-size: 1.5em;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+  #gif {
+    margin-top: 30px;
+    width: 300px;
+    border-radius: 20px;
+  }
+</style>
+</head>
+<body>
+  <h1>VOCÊ FOI HACKEADO PELO CACETINHO</h1>
+  <button id="botao">Quero ver AGORA!</button>
+  <br />
+  <img id="gif" src="https://media.giphy.com/media/3o6Zt8MgUuvSbkZYWc/giphy.gif" alt="Tiozão rindo" style="display:none" />
+  <audio id="audio" src="https://www.myinstants.com/media/sounds/gemidao-do-zap.mp3"></audio>
+
+<script>
+  const botao = document.getElementById('botao');
+  const gif = document.getElementById('gif');
+  const audio = document.getElementById('audio');
+  botao.onclick = () => {
+    gif.style.display = 'block';
+    audio.play();
+    botao.disabled = true;
+    botao.textContent = 'Pegou!';
+  };
+</script>
+</body>
+</html>
